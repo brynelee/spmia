@@ -3,6 +3,7 @@ package com.thoughtmechanix.licenses.controllers;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.services.LicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,17 +18,22 @@ public class LicenseServiceController {
     @Autowired
     private LicenseService licenseService;
 
+
+    private String exampleProperty;
+
     @RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
     public License getLicenses( @PathVariable("organizationId") String organizationId,
                                 @PathVariable("licenseId") String licenseId) {
 
-        //return licenseService.getLicense(licenseId);
+        return licenseService.getLicense(organizationId, licenseId);
+        /*
         return new License()
             .withId(licenseId)
             .withOrganizationId(organizationId)
             .withProductName("Teleco")
             .withLicenseType("Seat")
             .withOrganizationId("TestOrg");
+        */
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
