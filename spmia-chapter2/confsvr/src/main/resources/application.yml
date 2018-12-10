@@ -6,7 +6,10 @@ spring:
   cloud:
      config:
        server:
-           native:
-              searchLocations: file:///home/xiaodong/Gitroot/spmia/spmia-chapter2/confsvr/src/main/resources/config/licensingservice
+         encrypt:
+           enabled: false
+         native:
+           searchLocations: file:///home/xiaodong/Gitroot/spmia/spmia-chapter2/confsvr/src/main/resources/config/licensingservice
+
 
 
