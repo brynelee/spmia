@@ -11,6 +11,5 @@ public class ServiceConfig{
 
     public String getExampleProperty(){
         return exampleProperty;
-        //return "here is a test!";
     }
 }
