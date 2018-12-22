@@ -1,6 +1,6 @@
 spring:
   application:
-    name: organizationservice
+    name: zuulservice
   profiles:
     active:
       default
@@ -9,4 +9,4 @@ spring:
       enabled: true
       discovery:
         enabled: true
-        serviceId: configserver
+        service-id: configserver

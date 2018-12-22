@@ -21,6 +21,7 @@
     <modules>
         <module>licensing-service</module>
         <module>confsvr</module>
+        <module>zuulsvr</module>
     </modules>
     <build>
         <plugins>
