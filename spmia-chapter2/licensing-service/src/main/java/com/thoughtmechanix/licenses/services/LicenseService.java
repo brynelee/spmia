@@ -44,6 +44,9 @@ public class LicenseService {
 
 
     private Organization retrieveOrgInfo(String organizationId, String clientType){
+
+        logger.info("LicenseService retrieveOrgInfo called and the client type is: {}", clientType);
+
         Organization organization = null;
 
         switch (clientType) {

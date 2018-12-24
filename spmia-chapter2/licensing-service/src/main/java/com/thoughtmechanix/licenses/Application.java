@@ -1,5 +1,8 @@
 package com.thoughtmechanix.licenses;
 
+import com.thoughtmechanix.licenses.utils.UserContextInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +14,9 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+import java.util.List;
+
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -18,11 +24,24 @@ import org.springframework.web.client.RestTemplate;
 @EnableCircuitBreaker
 @RefreshScope
 public class Application {
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @LoadBalanced
     @Bean
     public RestTemplate getRestTemplate(){
-        return new RestTemplate();
+        RestTemplate template = new RestTemplate();
+        List interceptors = template.getInterceptors();
+        if (interceptors==null){
+            template.setInterceptors(Collections.singletonList(new UserContextInterceptor()));
+        }
+        else{
+            interceptors.add(new UserContextInterceptor());
+            template.setInterceptors(interceptors);
+        }
+
+        logger.info("RestTemplate Bean initiated with specicial UserContextInterceptor.");
+
+        return template;
     }
 
     public static void main(String[] args) {
