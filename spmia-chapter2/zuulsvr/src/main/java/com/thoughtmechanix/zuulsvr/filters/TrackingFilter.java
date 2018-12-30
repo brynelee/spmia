@@ -2,6 +2,9 @@ package com.thoughtmechanix.zuulsvr.filters;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.thoughtmechanix.zuulsvr.config.ServiceConfig;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,9 @@ public class TrackingFilter extends ZuulFilter{
 
     @Autowired
     FilterUtils filterUtils;
+
+    @Autowired
+    private ServiceConfig serviceConfig;
 
     @Override
     public String filterType() {
@@ -42,6 +48,31 @@ public class TrackingFilter extends ZuulFilter{
         return java.util.UUID.randomUUID().toString();
     }
 
+    private String getOrganizationId(){
+
+        String result="";
+        if (filterUtils.getAuthToken()!=null){
+
+            String authToken = filterUtils.getAuthToken().replace("Bearer ","");
+
+            logger.info("the token got is: {}", authToken);
+
+            try {
+                Claims claims = Jwts.parser()
+                        .setSigningKey(serviceConfig.getJwtSigningKey().getBytes("UTF-8"))
+                        .parseClaimsJws(authToken).getBody();
+                result = (String) claims.get("organizationId");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        logger.info("getOrganizationId is called and the result is: {}", result);
+
+        return result;
+    }
+
     public Object run() {
 
         if (isCorrelationIdPresent()) {
@@ -54,6 +85,10 @@ public class TrackingFilter extends ZuulFilter{
 
         RequestContext ctx = RequestContext.getCurrentContext();
         logger.info("Processing incoming request for {}.",  ctx.getRequest().getRequestURI());
+
+        System.out.println("The organization id from the token is : " + getOrganizationId());
+        filterUtils.setOrgId(getOrganizationId());
+
         return null;
     }
 }
