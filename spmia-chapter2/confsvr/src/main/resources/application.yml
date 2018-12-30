@@ -17,6 +17,6 @@ spring:
         encrypt.enabled: false
         git:
           uri: http://gitlab.xdubuntu1804.com/brynelee/config-repo.git
-          searchPaths: licensingservice,organizationservice,zuulservice,specialroutesservice
+          searchPaths: licensingservice,organizationservice,zuulservice,specialroutesservice,authenticationservice
           username: brynelee
           password: "{cipher}a8d9d17d465f8b31500c24887f1fed7f0d6adcd50e2b473c9e1c9a7e35e6b17c"

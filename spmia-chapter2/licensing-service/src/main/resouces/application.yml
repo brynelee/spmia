@@ -1,5 +1,12 @@
 server:
   port: 8082
+
+# oauth2 callback URL
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8085/auth/user
+
 eureka:
   instance:
     preferIpAddress: true

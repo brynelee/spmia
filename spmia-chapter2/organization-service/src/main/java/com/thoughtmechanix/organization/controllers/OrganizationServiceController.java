@@ -3,6 +3,8 @@ package com.thoughtmechanix.organization.controllers;
 
 import com.thoughtmechanix.organization.model.Organization;
 import com.thoughtmechanix.organization.services.OrganizationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,17 +19,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class OrganizationServiceController {
     @Autowired
     private OrganizationService orgService;
-
+    private static final Logger logger = LoggerFactory.getLogger(OrganizationServiceController.class);
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
     public Organization getOrganization( @PathVariable("organizationId") String organizationId) {
-        Organization org=orgService.getOrg(organizationId);
+
+        logger.info("Looking up data for org {}", organizationId);
+
+        Organization org = orgService.getOrg(organizationId);
+        org.setContactName(org.getContactName());
         return org;
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.PUT)
     public void updateOrganization( @PathVariable("organizationId") String orgId, @RequestBody Organization org) {
+
+        logger.info("update data for org {}", orgId);
         orgService.updateOrg( org );
+
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.POST)
@@ -37,7 +46,8 @@ public class OrganizationServiceController {
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrganization( @PathVariable("orgId") String orgId,  @RequestBody Organization org) {
-        orgService.deleteOrg( org );
+    public void deleteOrganization( @PathVariable("organizationId") String orgId) {
+        orgService.deleteOrg( orgId );
+
     }
 }
