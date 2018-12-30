@@ -15,11 +15,15 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class OrganizationRestTemplateClient {
 
-    /* Original Client without OAuth2 configuration
+    private static final Logger logger = LoggerFactory.getLogger(OrganizationRestTemplateClient.class);
+
     @Autowired
     RestTemplate restTemplate;
 
     public Organization getOrganization(String organizationId){
+
+        logger.info("getOrganization called with organizationId: {}", organizationId);
+
         ResponseEntity<Organization> restExchange =
                 restTemplate.exchange(
                         "http://organizationservice/v1/organizations/{organizationId}",
@@ -27,23 +31,6 @@ public class OrganizationRestTemplateClient {
                         null, Organization.class, organizationId);
 
         return restExchange.getBody();
-    }*/
-
-    @Autowired
-    OAuth2RestTemplate restTemplate;
-
-    private static final Logger logger = LoggerFactory.getLogger(OrganizationRestTemplateClient.class);
-
-    public Organization getOrganization(String organizationId) {
-
-        logger.info("getOrganization method called with organizationID: {}", organizationId);
-
-        ResponseEntity<Organization> restExchange =
-                restTemplate.exchange(
-                        "http://zuulservice/api/organization/v1/organizations/{organizationId}",
-                        HttpMethod.GET,
-                        null, Organization.class, organizationId);
-
-        return restExchange.getBody();
     }
+
 }
