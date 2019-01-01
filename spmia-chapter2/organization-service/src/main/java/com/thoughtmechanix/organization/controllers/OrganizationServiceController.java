@@ -3,6 +3,9 @@ package com.thoughtmechanix.organization.controllers;
 
 import com.thoughtmechanix.organization.model.Organization;
 import com.thoughtmechanix.organization.services.OrganizationService;
+import com.thoughtmechanix.organization.utils.UserContextHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +18,34 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RestController
 @RequestMapping(value="v1/organizations")
 public class OrganizationServiceController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrganizationServiceController.class);
+
     @Autowired
     private OrganizationService orgService;
 
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
     public Organization getOrganization( @PathVariable("organizationId") String organizationId) {
-        Organization org=orgService.getOrg(organizationId);
+
+        logger.info("Looking up data for org {} with correlation id {}", organizationId, UserContextHolder.getContext().getCorrelationId());
+
+        Organization org = orgService.getOrg(organizationId);
+        org.setContactName(org.getContactName());
+
         return org;
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.PUT)
     public void updateOrganization( @PathVariable("organizationId") String orgId, @RequestBody Organization org) {
+
+        logger.info("Update data for org {} with correlation id {}", orgId, UserContextHolder.getContext().getCorrelationId());
+
+        logger.info("the org's name to be updated is {}", org.getName());
+        logger.info("the org's contact name to be updated is {}", org.getContactName());
+        logger.info("the org's contact email to be updated is {}", org.getContactEmail());
+        logger.info("the org's contact phone to be updated is {}", org.getContactPhone());
+
         orgService.updateOrg( org );
     }
 
@@ -38,6 +57,6 @@ public class OrganizationServiceController {
     @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrganization( @PathVariable("orgId") String orgId,  @RequestBody Organization org) {
-        orgService.deleteOrg( org );
+        orgService.deleteOrg( orgId );
     }
 }
