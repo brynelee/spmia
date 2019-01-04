@@ -1,6 +1,9 @@
 package com.thoughtmechanix.licenses.model;
 
-public class Organization {
+import java.io.Serializable;
+
+public class Organization implements Serializable {
+
     String id;
     String name;
     String contactName;
