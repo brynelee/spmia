@@ -12,3 +12,9 @@ services:
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       ENCRYPT_KEY:       "IMSYMMETRIC"
+  zipkin:
+    image: xdli/tmx-zipkinsvr:springcloud
+    ports:
+      - "9411:9411"
+    environment:
+      SERVER_PORT: "9411"

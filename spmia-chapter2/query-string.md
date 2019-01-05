@@ -65,6 +65,10 @@ tmx-correlation-id CORRELATION_ID
 
 mvn clean package docker:build
 
+docker-compose -f docker/common/docker-compose.yml up
+
+clean-docker-images.sh
+
 
 
 
