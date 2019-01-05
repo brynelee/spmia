@@ -43,21 +43,23 @@ tmx-correlation-id CORRELATION_ID
 
 ## port setting
 
-nexus - 8081
-eureka - 8761
-zuul svr - 5555
-gitlab - 8080
-xdpostgres - 5432
-config server - 8889
-kafkaserver - 2181 (zookeeper), 9092(kafka)
-redis - 6379
+### common services
+* nexus - 8081
+* eureka - 8761
+* zuul svr - 5555
+* gitlab - 8080
+* xdpostgres - 5432
+* config server - 8889
+* kafkaserver - 2181 (zookeeper), 9092(kafka)
+* redis - 6379
+* zipkin server - 9411
 
-
-licensing service - 8082
-organization service - 8086
-organization service new - 8083
-specialroutes service - 8084
-authentication service - 8085
+### application services
+* licensing service - 8082
+* organization service - 8086
+* organization service new - 8083
+* specialroutes service - 8084
+* authentication service - 8085
 
 
 
