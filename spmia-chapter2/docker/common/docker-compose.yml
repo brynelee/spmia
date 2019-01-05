@@ -1,0 +1,14 @@
+version: '2'
+services:
+  eurekaserver:
+    image:   xdli/tmx-eurekasvr:springcloud
+    ports:
+       - "8761:8761"
+  configserver:
+    image: xdli/tmx-confsvr:springcloud
+    ports:
+    - "8889:8889"
+    environment:
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_PORT: "8761"
+      ENCRYPT_KEY:       "IMSYMMETRIC"

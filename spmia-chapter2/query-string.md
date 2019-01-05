@@ -61,5 +61,11 @@ tmx-correlation-id CORRELATION_ID
 * specialroutes service - 8084
 * authentication service - 8085
 
+## execution commands
+
+mvn clean package docker:build
+
+
+
 
 
