@@ -31,11 +31,16 @@ http://localhost:5555/api/licensing/v1/organizations/442adb6e-fa58-47f3-9ca2-ed1
 ### organization query
 http://localhost:5555/api/organization/v1/organizations/442adb6e-fa58-47f3-9ca2-ed1fecdfe86c
 
-
 ## eureka
 
 http://localhost:8761/eureka/apps
 http://localhost:8761/eureka/apps/organizationservice
+
+## zipkin
+http://locahost:9411
+
+### papertrailapp.com log collection cloud service
+https://papertrailapp.com/events
 
 ## key value
 
@@ -43,16 +48,20 @@ tmx-correlation-id CORRELATION_ID
 
 ## port setting
 
-### common services
+### common infrastrcture services
 * nexus - 8081
-* eureka - 8761
-* zuul svr - 5555
-* gitlab - 8080
 * xdpostgres - 5432
-* config server - 8889
+* gitlab - 8080
 * kafkaserver - 2181 (zookeeper), 9092(kafka)
 * redis - 6379
 * zipkin server - 9411
+* logspout
+
+## common app service
+
+* eureka - 8761
+* config server - 8889
+* zuul svr - 5555
 
 ### application services
 * licensing service - 8082

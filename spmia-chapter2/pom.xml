@@ -22,6 +22,7 @@
         <module>eurekasvr</module>
         <module>confsvr</module>
         <module>zipkinsvr</module>
+        <module>zuulsvr</module>
     </modules>
 
     <build>
