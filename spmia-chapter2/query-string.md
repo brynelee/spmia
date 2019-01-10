@@ -72,11 +72,22 @@ tmx-correlation-id CORRELATION_ID
 
 ## execution commands
 
+构建docker集群的镜像
 mvn clean package docker:build
 
+./xdmvn.sh
+
+启动docker集群
 docker-compose -f docker/common/docker-compose.yml up
 
+./xdrun.sh
+
+清理docker环境
 clean-docker-images.sh
+
+初始化kafka topic和postgreSQL数据
+./init.sh
+
 
 
 

@@ -8,4 +8,10 @@ echo "******* Eureka Server has started"
 echo "********************************************************"
 echo "Starting Configuration Service with Eureka Endpoint:  $EUREKASERVER_URI";
 echo "********************************************************"
-java -Djava.security.egd=file:/dev/./urandom -Deureka.client.serviceUrl.defaultZone=$EUREKASERVER_URI -jar /usr/local/configserver/@project.build.finalName@.jar
+java -Djava.security.egd=file:/dev/./urandom \
+     -Deureka.client.serviceUrl.defaultZone=$EUREKASERVER_URI \
+     -Dspring.cloud.config.server.git.uri=$GITSERVER_URI \
+     -Dspring.cloud.config.server.git.searchPaths=$SEARCHPATHS \
+     -Dspring.cloud.config.server.git.username=$USERNAME \
+     -Dspring.cloud.config.server.git.password=$PASSWORD \
+     -jar /usr/local/configserver/@project.build.finalName@.jar

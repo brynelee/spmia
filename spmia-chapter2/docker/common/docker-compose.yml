@@ -12,12 +12,24 @@ services:
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       ENCRYPT_KEY:       "IMSYMMETRIC"
+      GITSERVER_URI: "http://gitlab.xdubuntu1804.com/brynelee/config-repo.git"
+      SEARCHPATHS: "licensingservice,organizationservice,zuulservice"
+      USERNAME: "brynelee"
+      PASSWORD: "{cipher}a8d9d17d465f8b31500c24887f1fed7f0d6adcd50e2b473c9e1c9a7e35e6b17c"
   zipkin:
     image: xdli/tmx-zipkinsvr:springcloud
     ports:
       - "9411:9411"
     environment:
       SERVER_PORT: "9411"
+  database:
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=p0stgr@s
+      - POSTGRES_DB=postgres
   zuulserver:
     image: xdli/tmx-zuulsvr:springcloud
     ports:
@@ -32,3 +44,56 @@ services:
       EUREKASERVER_PORT:   "8761"
       CONFIGSERVER_PORT:   "8889"
       ZIPKIN_PORT:         "9411"
+  organizationservice:
+    image: xdli/tmx-organization-service:springcloud
+    ports:
+      - "8086:8086"
+    environment:
+      PROFILE: "default"
+      SERVER_PORT: "8086"
+      CONFIGSERVER_URI: "http://configserver:8889"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      ZIPKIN_URI: "http://zipkin:9411"
+      KAFKASERVER_URI: "kafkaserver"
+      ZKSERVER_URI: "kafkaserver"
+      DATABASESERVER_PORT: "5432"
+      EUREKASERVER_PORT:   "8761"
+      CONFIGSERVER_PORT:   "8889"
+      ZUULSERVER_PORT:     "5555"
+      KAFKASERVER_PORT:    "2181"
+      ZIPKIN_PORT:         "9411"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+  licensingservice:
+    image: xdli/tmx-licensing-service:springcloud
+    ports:
+      - "8082:8082"
+    environment:
+      PROFILE: "default"
+      SERVER_PORT: "8082"
+      CONFIGSERVER_URI: "http://configserver:8889"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      ZIPKIN_URI: "http://zipkin:9411"
+      KAFKASERVER_URI: "kafkaserver"
+      ZKSERVER_URI: "kafkaserver"
+      DATABASESERVER_PORT: "5432"
+      EUREKASERVER_PORT:   "8761"
+      CONFIGSERVER_PORT:   "8889"
+      ZUULSERVER_PORT:     "5555"
+      KAFKASERVER_PORT:    "2181"
+      REDIS_PORT:          "6379"
+      ZIPKIN_PORT:         "9411"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+  logspout:
+    image: gliderlabs/logspout
+    command: syslog+tls://logs7.papertrailapp.com:15605
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  kafkaserver:
+    image: spotify/kafka
+    ports:
+      - 2181:2181
+      - 9092:9092
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379

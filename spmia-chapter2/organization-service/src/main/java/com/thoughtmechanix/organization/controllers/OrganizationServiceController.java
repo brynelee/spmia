@@ -54,9 +54,15 @@ public class OrganizationServiceController {
         orgService.saveOrg( org );
     }
 
+    /*@RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOrganization( @PathVariable("organizationId") String orgId,  @RequestBody Organization org) {
+        orgService.deleteOrg( orgId );
+    }*/
+
     @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrganization( @PathVariable("orgId") String orgId,  @RequestBody Organization org) {
+    public void deleteOrganization( @PathVariable("organizationId") String orgId) {
         orgService.deleteOrg( orgId );
     }
 }

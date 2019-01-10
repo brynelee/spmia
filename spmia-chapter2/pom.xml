@@ -23,6 +23,8 @@
         <module>confsvr</module>
         <module>zipkinsvr</module>
         <module>zuulsvr</module>
+        <module>organization-service</module>
+        <module>licensing-service</module>
     </modules>
 
     <build>
