@@ -1,4 +1,4 @@
-FROM bryne/xdpsnrepo
+FROM bryne/spmiabaseimage
 RUN mkdir -p /usr/local/eurekaserver
 ADD @project.build.finalName@.jar /usr/local/eurekaserver/
 ADD run.sh run.sh

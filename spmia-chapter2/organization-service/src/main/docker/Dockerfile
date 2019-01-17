@@ -1,4 +1,4 @@
-FROM bryne/xdpsnrepo
+FROM bryne/spmiabaseimage
 RUN mkdir -p /usr/local/organizationservice
 ADD @project.build.finalName@.jar /usr/local/organizationservice/
 ADD run.sh run.sh

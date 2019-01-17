@@ -1,4 +1,4 @@
-FROM bryne/xdpsnrepo
+FROM bryne/spmiabaseimage
 RUN mkdir -p /usr/local/zipkinserver
 ADD @project.build.finalName@.jar /usr/local/zipkinserver/
 ADD run.sh run.sh

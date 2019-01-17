@@ -1,4 +1,4 @@
-FROM bryne/xdpsnrepo:configserverBase
+FROM bryne/spmiaconfigbaseimage
 RUN mkdir -p /usr/local/configserver
 ADD @project.build.finalName@.jar /usr/local/configserver/
 ADD run.sh run.sh

@@ -1,4 +1,4 @@
-FROM bryne/xdpsnrepo
+FROM bryne/spmiabaseimage
 RUN mkdir -p /usr/local/zuulservice
 ADD @project.build.finalName@.jar /usr/local/zuulservice/
 ADD run.sh run.sh

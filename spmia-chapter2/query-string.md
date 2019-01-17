@@ -56,6 +56,7 @@ tmx-correlation-id CORRELATION_ID
 * redis - 6379
 * zipkin server - 9411
 * logspout
+× atcol/docker-registry-ui - 8095
 
 ## common app service
 
