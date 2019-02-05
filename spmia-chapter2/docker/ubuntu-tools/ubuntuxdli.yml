@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntutest
+spec:
+  dnsPolicy: ClusterFirst
+  containers:
+  - name: ubuntuxdli
+    image: xdubuntu1810mini:5000/ubuntu:xdli
+    command: ["sleep"]
+    args: ["3600"]

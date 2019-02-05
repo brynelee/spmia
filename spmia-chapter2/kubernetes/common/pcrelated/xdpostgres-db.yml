@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: xdpostgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xdpostgres
+    spec:
+      containers:
+      - name: xdpostgres
+        image: xdubuntu1810mini:5000/postgres:9.5
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: "/var/lib/postgresql/data"
+          name: postgres-data
+        resources: {}
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: p0stgr@s
+        - name: POSTGRES_DB
+          value: postgres
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: mypvc1
+      restartPolicy: Always

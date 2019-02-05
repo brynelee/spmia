@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eurekaserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eurekaserver
+    spec:
+      containers:
+      - name: eurekaserver
+        image: xdubuntu1804:5000/tmx-eurekasvr:springcloud
+        ports:
+        - containerPort: 8761
+      nodeSelector:
+        xdlabel: node01
+      restartPolicy: Always

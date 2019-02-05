@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: configserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: configserver
+    spec:
+      containers:
+      - name: configserver
+        image: xdubuntu1810mini:5000/tmx-confsvr:springcloud
+        ports:
+        - containerPort: 8889
+        resources: {}
+        env:
+        - name: ENCRYPT_KEY
+          value: IMSYMMETRIC
+        - name: EUREKASERVER_PORT
+          value: "8761"
+        - name: EUREKASERVER_URI
+          value: http://eurekaserver:8761/eureka/
+        - name: GITSERVER_URI
+          value: http://xdubuntu1810mini.bryneleexdli.com/brynelee/config-repo.git
+        - name: PASSWORD
+          value: '{cipher}a8d9d17d465f8b31500c24887f1fed7f0d6adcd50e2b473c9e1c9a7e35e6b17c'
+        - name: SEARCHPATHS
+          value: licensingservice,organizationservice,zuulservice
+        - name: USERNAME
+          value: brynelee
+      nodeSelector:
+        xdlabel: node01
+      restartPolicy: Always

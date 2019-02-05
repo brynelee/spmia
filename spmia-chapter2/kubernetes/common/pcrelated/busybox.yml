@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tester
+spec:
+  dnsPolicy: ClusterFirst
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["sleep"]
+    args: ["3600"]
