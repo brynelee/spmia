@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: xdubuntu
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xdubuntu
+    spec:
+      containers:
+      - name: xdubuntu
+        image: xdubuntu1810mini:5000/ubuntu:xdli
+        imagePullPolicy: Always
+        command: ["sleep"]
+        args: ["3600"]
+      restartPolicy: Always

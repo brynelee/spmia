@@ -7,5 +7,6 @@ spec:
   containers:
   - name: ubuntuxdli
     image: xdubuntu1810mini:5000/ubuntu:xdli
+    imagePullPolicy: Always
     command: ["sleep"]
     args: ["3600"]
