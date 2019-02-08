@@ -23,6 +23,9 @@ spec:
         - name: KAFKA_ADVERTISED_PORT
           value: "9092"
         - name: KAFKA_ADVERTISED_HOST_NAME
-          value: "10.101.203.184"
+          value: "kafka-service"
         - name: KAFKA_ZOOKEEPER_CONNECT
-          value: "10.103.202.205:2181"
+          value: "zookeeper-service:2181"
+
+# 使用kafka-service和zookeeper-service这类方式只能支持cluster内部的使用，对于外部访问会有问题
+# 如果使用外部访问，那么IP和端口都应该切换到外部可访问的地址，同时也需要zookeeper、broker之间都能够访问
