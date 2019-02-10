@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zuulserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zuulserver
+    spec:
+      containers:
+      - name: zuulserver
+        image: xdubuntu1810mini:5000/tmx-zuulsvr:springcloud
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5555
+        resources: {}
+        env:
+        - name: PROFILE
+          value: default
+        - name: SERVER_PORT
+          value: "5555"
+        - name: EUREKASERVER_URI
+          value: http://eurekaserver:8761/eureka/
+        - name: CONFIGSERVER_URI
+          value: http://configserver:8889
+        - name: ZIPKIN_URI
+          value: http://zipkin-service:9411
+        - name: DATABASESERVER_PORT
+          value: "5432"
+        - name: EUREKASERVER_PORT
+          value: "8761"
+        - name: CONFIGSERVER_PORT
+          value: "8889"
+        - name: ZIPKIN_PORT
+          value: "9411"
+        - name: DEBUG_MODE
+          value: "0"
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: zuulservice
+spec:
+  type: NodePort
+  selector:
+    app: zuulserver
+  ports:
+  - name: zuulservice
+    protocol: TCP
+    port: 5555
+    targetPort: 5555
+    nodePort: 30555

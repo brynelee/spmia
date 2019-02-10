@@ -15,7 +15,7 @@ echo "*******  Configuration Server has started"
 echo "********************************************************"
 echo "Waiting for the ZIPKIN server to start  on port $ZIPKIN_PORT"
 echo "********************************************************"
-while ! `nc -z zipkin-service $ZIPKIN_PORT`; do sleep 10; done
+while ! `nc -z zipkin $ZIPKIN_PORT`; do sleep 10; done
 echo "******* ZIPKIN has started"
 
 echo "********************************************************"
@@ -26,5 +26,4 @@ java -Djava.security.egd=file:/dev/./urandom -Dserver.port=$SERVER_PORT   \
      -Dspring.cloud.config.uri=$CONFIGSERVER_URI                \
      -Dspring.profiles.active=$PROFILE                          \
       -Dspring.zipkin.baseUrl=$ZIPKIN_URI                       \
-      -Ddebug=$DEBUG_MODE                                       \
      -jar /usr/local/zuulservice/@project.build.finalName@.jar
