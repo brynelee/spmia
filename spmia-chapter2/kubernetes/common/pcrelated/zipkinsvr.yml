@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zipkinserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zipkinserver
+    spec:
+      containers:
+      - name: zipkinserver
+        image: xdubuntu1810mini:5000/tmx-zipkinsvr:springcloud
+        ports:
+        - containerPort: 9411
+        resources: {}
+        env:
+        - name: SERVER_PORT
+          value: "9411"
+        - name: ZIPKIN_URI
+          value: http://zipkin-service:9411
+        - name: PROFILE
+          value: default
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zipkin-service
+  name: zipkin-service
+spec:
+  type: NodePort
+  ports:
+  - name: zookeeper-port
+    port: 9411
+    targetPort: 9411
+    nodePort: 30411
+    protocol: TCP
+  selector:
+    app: zipkinserver
