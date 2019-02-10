@@ -14,6 +14,6 @@ spec:
         image: xdubuntu1810mini:5000/tmx-eurekasvr:springcloud
         ports:
         - containerPort: 8761
-      nodeSelector:
-        xdlabel: node01
+#      nodeSelector:
+#        xdlabel: node01
       restartPolicy: Always

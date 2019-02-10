@@ -30,6 +30,6 @@ spec:
           value: licensingservice,organizationservice,zuulservice
         - name: USERNAME
           value: brynelee
-      nodeSelector:
-        xdlabel: node01
+#      nodeSelector:
+#        xdlabel: node01
       restartPolicy: Always

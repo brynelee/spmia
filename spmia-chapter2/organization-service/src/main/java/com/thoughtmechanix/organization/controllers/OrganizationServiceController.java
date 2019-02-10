@@ -1,6 +1,8 @@
 package com.thoughtmechanix.organization.controllers;
 
 
+import com.netflix.discovery.converters.Auto;
+import com.thoughtmechanix.organization.config.ServiceConfig;
 import com.thoughtmechanix.organization.model.Organization;
 import com.thoughtmechanix.organization.services.OrganizationService;
 import com.thoughtmechanix.organization.utils.UserContextHolder;
@@ -23,6 +25,17 @@ public class OrganizationServiceController {
 
     @Autowired
     private OrganizationService orgService;
+
+    @Autowired
+    private ServiceConfig sc;
+
+    @RequestMapping(value="/exampleproperty",method = RequestMethod.GET)
+    public ServiceConfig getExampleProperty() {
+
+        logger.info("the example property is {}", sc.getExampleProperty());
+
+        return sc;
+    }
 
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
