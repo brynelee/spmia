@@ -48,7 +48,7 @@ spec:
         - name: ENCRYPT_KEY
           value: IMSYMMETRIC
         - name: DEBUG_MODE
-          value: "0"
+          value: false
       restartPolicy: Always
 
 ---
