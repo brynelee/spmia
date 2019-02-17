@@ -12,7 +12,29 @@ spec:
       containers:
       - name: xdubuntu
         image: xdubuntu1810mini:5000/ubuntu:xdli
+        ports:
+        - containerPort: 80
         imagePullPolicy: Always
         command: ["sleep"]
         args: ["3600"]
       restartPolicy: Always
+
+---
+
+---
+
+# service no usage, just for istio injection compatible
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: xdubuntu
+spec:
+  type: ClusterIP
+  selector:
+    app: xdubuntu
+  ports:
+  - name: xdubuntu-service
+    protocol: TCP
+    port: 8098
+    targetPort: 80

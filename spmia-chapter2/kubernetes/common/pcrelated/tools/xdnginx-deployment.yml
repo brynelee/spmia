@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: xdnginx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xdnginx
+    spec:
+      containers:
+      - name: xdnginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: xdnginx
+spec:
+  type: NodePort
+  selector:
+    app: xdnginx
+  ports:
+  - name: xdnginx-service
+    protocol: TCP
+    port: 8099
+    targetPort: 80
+    nodePort: 30099
