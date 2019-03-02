@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: xd-ingress
+  namespace: istio-system
+spec:
+  tls:
+  - hosts:
+    - k8s-master
+    secretName: xd-secret
+  rules:
+  - host: k8s-master
+    http:
+      paths:
+      - path: /grafana
+        backend:
+          serviceName: grafana
+          servicePort: 3000
+      - path: /kiali
+        backend:
+          serviceName: kiali
+          servicePort: 20001
+      - path: /jaeger
+        backend:
+          serviceName: jaeger-query
+          servicePort: 16686
+      - path: /prometheus
+        backend:
+          serviceName: prometheus
+          servicePort: 9000
+
