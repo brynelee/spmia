@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: xd2-ingress
+spec:
+  backend:
+    serviceName: httpbin
+    servicePort: 8000
+
