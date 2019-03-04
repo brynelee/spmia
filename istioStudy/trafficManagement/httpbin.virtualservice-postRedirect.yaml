@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: httpbin
+spec:
+  hosts:
+  - httpbin.default.svc.cluster.local
+  http:
+  - match:
+    - uri:
+        exact: "/post"
+    redirect:
+      uri: /get
+  - route:
+    - destination:
+        host: httpbin.default.svc.cluster.local
+
