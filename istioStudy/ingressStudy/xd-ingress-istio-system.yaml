@@ -7,6 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
+  - host: httpbin.k8s-master
+    http:
+      paths:
+      - path: /?(.*)
+        backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
   - host: grafana.k8s-master
     http:
       paths:
