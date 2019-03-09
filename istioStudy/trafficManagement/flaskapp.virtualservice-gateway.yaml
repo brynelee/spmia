@@ -4,14 +4,19 @@ metadata:
   name: flaskapp
 spec:
   hosts:
-  - flaskapp.default.svc.cluster.local
-  - flaskapp.microservice.rocks
+  - "flaskapp.microservice.rocks"
   gateways:
   - mesh
   - example-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: /
+    - uri:
+        prefix: /env
+    - uri:
+        prefix: /fetch
+    route:
     - destination:
-       host: flaskapp.default.svc.cluster.local
-       subset: v2
-
+        host: flaskapp.default.svc.cluster.local
+        subset: v2

@@ -4,15 +4,18 @@ metadata:
   name: httpbin 
 spec:
   hosts:
-  - "*"
+  - "httpbin.microservice.rocks"
   gateways:
+  - mesh
   - httpbin-gateway
   http:
   - match:
     - uri:
-        prefix: /status 
-    - uri:
-        prefix: /delay 
+        prefix: /
+#    - uri:
+#        prefix: /status
+#    - uri:
+#        prefix: /delay
     route:
     - destination:
         port:

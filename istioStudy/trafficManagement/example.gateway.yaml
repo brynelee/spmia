@@ -11,5 +11,4 @@ spec:
        name: http
        protocol: HTTP
       hosts:
-      - "*.microservice.rocks"
-      - "*.microservice.xyz"
+      - "flaskapp.microservice.rocks"
