@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome to nginx!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
+    <meta charset='utf-8'>
+    <title>Xiaodong's k8s home page</title>
+    <style type="text/css" media="all">
+        body { margin-top: 30px; }
+        .templates { display: none; }
+        .inline-list{
+            margin-bottom: 0px; /*Skeleton reset */
+        }
+        .inline-list li {
+            display: inline;
+            margin: 0 20px 0 0;
+        }
+        .fixed-top {
+            position: fixed;
+            top: 0px;
+            z-index: 1024;
+        }
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+        .hover-links a { text-decoration: none;}
+        .hover-links a:hover { text-decoration: underline; }
+        .nav-container {
+            padding-left: 40px;
+            background: #666;
+        }
+        .nav-container a { color: white; }
+        .navbar-padding {
+            padding-top: 7px;
+            display: inline-block;
+        }
+
+
+    <!-- CSS goes in the document HEAD or added to your external stylesheet -->
+
+
+
+        table.hovertable { font-family: verdana,arial,sans-serif; font-size:11px; color:#333333; border-width: 1px; border-color: #999999; border-collapse: collapse;}
+
+        table.hovertable th { background-color:#c3dde0;
+
+            border-width: 1px; padding: 8px; border-style: solid;
+
+            border-color: #a9c6c9;
+
+        }
+
+        table.hovertable tr { background-color:#d4e3e5;}
+
+        table.hovertable td {
+
+            border-width: 1px; padding: 8px;
+
+            border-style: solid; border-color: #a9c6c9;
+        }
+
+    </style>
+
+
+
 </head>
 <body>
 <h1>Welcome to nginx!</h1>
@@ -24,17 +79,57 @@ Commercial support is available at
 
 <h1> Xiaodong's personal Part</h1>
 
+<table border="10">
+    <title>Xiaodong's istio study part</title>
+    <tr>
+        <th>common usage</th>
+        <th>k8s tools</th>
+    </tr>
+    <tr>
+        <td>
+            <a href="http://pck8s-master:30090/env/version">App nodeport usage demo(flaskapp env version)</a><br>
+            <a href="http://pck8s-master:30090/">App nodeport usage demo</a><br>
+        </td>
+        <td>
+            <a href="https://k8s-master:32669/">k8s dashboard</a><br>
+            <a href="http://pck8s-master:31983/">k8s weave scope</a><br>
+        </td>
+    </tr>
+    <tr>
+        <th>common test</th>
+        <th>istio tooling</th>
+    </tr>
+    <tr>
+        <td>
+            <p>flaskapp using nginx -> istio-ingress defined by gateway and virtualservice</p>
+            <a href="http://k8s-master:8090/flaskapp">flaskapp through nginx -> istio-ingressgateway</a><br>
+            <a href="http://k8s-master:8090/flaskapp/env/version">env/version</a><br>
+            <a href="http://k8s-master:8090/flaskapp/env/test1">env/test1</a>
+
+            <p>httpbin using nginx -> istio-ingress defined by gateway and virtualservice</p>
+            <a href="http://k8s-master:8090/httpbin">flaskapp through nginx -> istio-ingressgateway</a>
+        </td>
+        <td>
+            <p>istio toolings using <font color="red">k8s ingress-nginx</font></p>
+            <a href="http://grafana.k8s-master:32207/">istio grafana</a><br>
+            <a href="http://kiali.k8s-master:32207/">istio kiali</a><br>
+            <a href="http://prometheus.k8s-master:32207/">istio prometheus</a><br>
+            <a href="http://jaeger.k8s-master:32207/">istio jaeger</a><br>
+            <a href="http://httpbin.k8s-master:32207/">httpbin</a><br>
+            <p>common app using <font color="red">k8s ingress-nginx by TLS</font></p>
+            <a href="https://k8s-master:32472/httpbin">httpbin on TLS</a><br>
+            <a href="https://k8s-master:32472/flaskapp">flaskapp on TLS</a><br>
+        </td>
+    </tr>
+
+
+</table>
+
 <p>xiaodong's personal project using javascript</p>
 <a href="learnjs/public/index.html">xiaodong's personal learnjs project</a>
 
 
-<p>flaskapp using nginx -> istio-ingress defined by gateway and virtualservice</p>
-<a href="http://k8s-master:8090/flaskapp">flaskapp through nginx -> istio-ingressgateway</a><br>
-<a href="http://k8s-master:8090/flaskapp/env/version">env/version</a><br>
-<a href="http://k8s-master:8090/flaskapp/env/test1">env/test1</a>
 
-<p>httpbin using nginx -> istio-ingress defined by gateway and virtualservice</p>
-<a href="http://k8s-master:8090/httpbin">flaskapp through nginx -> istio-ingressgateway</a>
 
 
 

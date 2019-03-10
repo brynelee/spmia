@@ -1,0 +1,37 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: example-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+       number: 80
+       name: http-all
+       protocol: HTTP
+      hosts:
+      - "flaskapp.microservice.rocks"
+      - "flaskapp.microservice.xyz"
+    - port:
+       number: 443
+       name: https-rocks
+       protocol: HTTPS
+      tls:
+       mode: MUTUAL
+       serverCertificate: /etc/istio/ingressgateway-certs/rocks-cert.pem
+       privateKey: /etc/istio/ingressgateway-certs/rocks-key.pem
+       caCertificates: /etc/istio/ingressgateway-ca-certs/ca-chain.cert.pem
+      hosts:
+      - "flaskapp.microservice.rocks"
+    - port:
+       number: 443
+       name: https-xyz
+       protocol: HTTPS
+      tls:
+       mode: MUTUAL
+       serverCertificate: /etc/istio/ingressgateway-certs/xyz-cert.pem
+       privateKey: /etc/istio/ingressgateway-certs/xyz-key.pem
+       caCertificates: /etc/istio/ingressgateway-ca-certs/ca-chain.cert.pem
+      hosts:
+      - "flaskapp.microservice.xyz"
