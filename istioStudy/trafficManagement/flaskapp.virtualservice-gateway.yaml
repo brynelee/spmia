@@ -5,6 +5,7 @@ metadata:
 spec:
   hosts:
   - "flaskapp.microservice.rocks"
+#  - "flaskapp.microservice.xyz"
   gateways:
   - mesh
   - example-gateway

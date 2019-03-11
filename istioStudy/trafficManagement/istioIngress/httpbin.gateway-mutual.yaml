@@ -18,8 +18,8 @@ spec:
       protocol: HTTPS
     tls:
       mode: MUTUAL
-      serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
-      privateKey: /etc/istio/ingressgateway-certs/tls.key
-      caCertificates: /etc/istio/ingressgateway-ca-certs/ca-chain.cert.pem
+      serverCertificate: /etc/istio/ingressgateway-certs/httpbin.microservice.rocks.crt
+      privateKey: /etc/istio/ingressgateway-certs/httpbin.microservice.rocks.key
+      caCertificates: /etc/istio/ingressgateway-ca-certs/ca.crt
     hosts:
     - "httpbin.microservice.rocks"
