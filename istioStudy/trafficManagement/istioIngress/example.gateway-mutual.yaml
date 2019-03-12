@@ -12,6 +12,7 @@ spec:
        protocol: HTTP
       hosts:
       - "flaskapp.microservice.rocks"
+      - "flaskapp.microservice.xyz"
     - port:
        number: 443
        name: https-flaskapp-rocks
@@ -23,6 +24,17 @@ spec:
        caCertificates: /etc/istio/ingressgateway-ca-certs/ca.crt
       hosts:
       - "flaskapp.microservice.rocks"
+    - port:
+       number: 443
+       name: https-flaskapp-xyz
+       protocol: HTTPS
+      tls:
+       mode: MUTUAL
+       serverCertificate: /etc/istio/ingressgateway-certs/flaskapp.microservice.xyz.crt
+       privateKey: /etc/istio/ingressgateway-certs/flaskapp.microservice.xyz.key
+       caCertificates: /etc/istio/ingressgateway-ca-certs/ca.crt
+      hosts:
+      - "flaskapp.microservice.xyz"
 
 
 

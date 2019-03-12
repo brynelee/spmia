@@ -4,6 +4,7 @@ metadata:
   name: httpbin 
 spec:
   hosts:
+  - "httpbin.default.svc.cluster.local"
   - "httpbin.microservice.rocks"
   gateways:
   - mesh
