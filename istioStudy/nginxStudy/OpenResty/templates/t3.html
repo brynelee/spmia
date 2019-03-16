@@ -1,0 +1,30 @@
+{(header.html)}
+<body>
+{# no conversion var output #}
+title: {* string.upper(name) *}<br/>
+{# converted var output #}
+description: {{description}}<br/>
+{# able to do some calculation #}
+age: {* age + 1 *}<br/>
+{# looping output #}
+hobby:
+{% for i, v in ipairs(hobby) do %}
+{% if i > 1 then %}，{% end %}
+{* v *}
+{% end %}<br/>
+
+score:
+{% local i = 1; %}
+{% for k, v in pairs(score) do %}
+{% if i > 1 then %}，{% end %}
+{* k *} = {* v *}
+{% i = i + 1 %}
+{% end %}<br/>
+score2：
+{% for i = 1, #score2 do local t = score2[i] %}
+{% if i > 1 then %}，{% end %}
+{* t.name *} = {* t.score *}
+{% end %}<br/>
+{# No conversion in the middle #}
+{-raw-}{(file)}{-raw-}
+{(footer.html)}
