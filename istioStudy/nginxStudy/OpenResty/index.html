@@ -133,6 +133,36 @@
             <a href="http://k8s-master:8090/flaskapp-sec/env/test1">http://k8s-master:8090/flaskapp-sec/env/test1</a><br>
         </td>
     </tr>
+    <tr>
+        <td>
+            <p>OpenResty Code chips</p>
+            <a href="http://k8s-master:8091/openresty">http://k8s-master:8091/openresty</a><br>
+            <a href="http://k8s-master:8091/lua_request/1/2?a=3&b=4">request demo</a><br/>
+            <a href="http://k8s-master:8091/lua_response_1">response demo 1</a><br/>
+            <a href="http://k8s-master:8091/lua_response_2">response demo 2</a><br/>
+            <a href="http://k8s-master:8091/lua_shared_dict">shared dict across worker processes</a><br/>
+            <a href="http://k8s-master:8091/lua_set_1?i=1&j=10">set_by_lua</a><br/>
+            <a href="http://k8s-master:8091/lua_rewrite_1">rewrite_by_lua no jump</a><br/>
+            <a href="http://k8s-master:8091/lua_rewrite_1?jump=1">rewrite_by_lua jump to jd</a><br/>
+            <a href="http://k8s-master:8091/lua_access?token=234">access_by_lua forbinden</a><br/>
+            <a href="http://k8s-master:8091/lua_access?token=123">access_by_lua pass</a><br/>
+            <a href="http://k8s-master:8091/lua_module_1">sub module test</a><br/>
+            <a href="http://k8s-master:8091/lua_cjson">test cjson</a><br/>
+        </td>
+        <td>
+            <p>OpenResty Code chips - Redis and MySQL</p>
+            <p>redis test<br/>
+                localhost: docker run --name xdredis -p 6379:6379 -d redis<br/>
+                <a href="http://k8s-master:8091/lua_redis_basic">redis test</a><br/>
+            </p>
+            <p>env preparation<br/>
+                mkdir -p /home/xiaodong/docker_data/mysql_data<br>
+                docker run --name xdmysql -p 3306:3306 -v /home/xiaodong/docker_data/mysql_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='test@1975' -d mysql:5.7
+            </p>
+            <a href="http://k8s-master:8091/lua_mysql?ch=hello">mysql test by openresty</a><br/>
+
+        </td>
+    </tr>
 
 
 </table>
