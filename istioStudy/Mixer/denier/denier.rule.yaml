@@ -6,4 +6,4 @@ spec:
   match: destination.labels["app"] == "httpbin" && source.labels["app"]=="sleep" && source.labels["version"] == "v1"
   actions:
     - handler: code-7.denier
-instances: [place-holder.checknothing]
+      instances: [place-holder.checknothing]
