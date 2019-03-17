@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8" />
+<title>第一个jQuery程序</title>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<style>
+         body{font-size:13px}
+         #divFrame{border:solid 1px #666;width:301px;overflow:hidden}
+         #divFrame .clsHead{background-color:#eee;padding:8px;height:18px;cursor:hand}
+         #divFrame .clsHead h3{padding:0px;margin:0px;float:left}
+         #divFrame .clsHead span{float:right;margin-top:3px}
+         #divFrame .clsContent{padding:8px}
+         #divFrame .clsContent ul {list-style-type:none;margin:0px;padding:0px}
+         #divFrame .clsContent ul li{ float:left;width:95px;height:23px;line-height:23px}
+         #divFrame .clsBot{float:right;padding-top:5px;padding-bottom:5px}
+         .GetFocus{background-color:#eee}
+    </style>
+</head>
+<body>
+<div id="divFrame">
+  <div class="clsHead">
+    <h3>品牌分类</h3>
+    <!--标题名称-->
+    <span><img src="Images/a2.gif" alt=""/></span> </div>
+    <!--标题提示图片-->
+    <div class="clsContent">
+    <!--品牌列表-->
+    <ul>
+      <li ><a href="#">佳能</a><i>(30440) </i></li>
+      <li ><a href="#">索尼</a><i>(27220) </i></li>
+      <li ><a href="#">三星</a><i>(20808) </i></li>
+      <li ><a href="#">尼康</a><i>(17821) </i></li>
+      <li ><a href="#">松下</a><i>(12289) </i></li>
+      <li ><a href="#">卡西欧</a><i>(8242) </i></li>
+      <li ><a href="#">富士</a><i>(14894) </i></li>
+      <li ><a href="#">柯达</a><i>(9520) </i></li>
+      <li ><a href="#">宾得</a><i>(2195) </i></li>
+      <li ><a href="#">理光</a><i>(4114) </i></li>
+      <li ><a href="#">奥林</a><i>(12205) </i></li>
+      <li ><a href="#">明基</a><i>(1466) </i></li>
+      <li ><a href="#">爱国者</a><i>(3091) </i></li>
+      <li ><a href="#">其他</a><i>(7275) </i></li>
+    </ul>
+    <div class="clsBot"><a href="#">精简显示品牌</a><img src="Images/a5.gif" alt=""/></div>
+    <!--显示/隐藏内容-->
+  </div>
+</div>
+<script>
+$(function(){                              //页面加载事件
+  $(".clsHead").click(function(){             //图片单击事件
+    if($(".clsContent").is(":visible")){      //如果内容可见
+       //改变图片
+       $(".clsHead span img").attr("src","Images/a1.gif"); 
+       $(".clsContent").css("display","none"); //隐藏内容 
+    }else{
+       //改变图片
+       $(".clsHead span img").attr("src","Images/a2.gif"); 
+        $(".clsContent").css("display","block");//显示内容
+     }
+   });
+   $(".clsBot" > a).click(function(){            
+   if($(".clsBot" > a).text()=="精简显示品牌"){ 
+        $("ul li:gt(5):not(:last)").hide();        
+   $(".clsBot" > a).text("显示全部品牌"); 
+     }else{
+
+        $("ul li:gt(5):not(:last)").show().addClass("GetFocus"); 
+        $(".clsBot" > a).text("精简显示品牌");   
+     }
+   });  
+ });
+
+</script>
+</body>
+
+</html>
