@@ -9,6 +9,7 @@ spec:
   tls:
   - hosts:
     - k8s-master
+    - xdreact.k8s-master
     secretName: ingress.secret
   rules:
   - host: k8s-master
@@ -22,6 +23,15 @@ spec:
         backend:
           serviceName: flaskapp
           servicePort: 80
+  - host: xdreact.k8s-master
+    http:
+      paths:
+      - path: /?(.*)
+        backend:
+          serviceName: xdreact
+          servicePort: 80
+
+
 
 
 
