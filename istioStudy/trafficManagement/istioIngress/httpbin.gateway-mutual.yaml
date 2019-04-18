@@ -11,6 +11,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
+    -  mesh
     - "httpbin.microservice.rocks"
   - port:
       number: 443

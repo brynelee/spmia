@@ -5,4 +5,4 @@ metadata:
 spec:
   status:
     code: 7
-message: Not allowed
+    message: Not allowed
