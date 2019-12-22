@@ -1081,7 +1081,8 @@ data:
 
     # List of repositories for which tag to digest resolving should be skipped
     registriesSkippingTagResolving: "ko.local,dev.local"
-  queueSidecarImage: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+  queueSidecarImage: gcr.io/knative-releases/knative.dev/serving/cmd/queue:v0.9.0
+  imagePullPolicy: Never
 kind: ConfigMap
 metadata:
   labels:
