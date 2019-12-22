@@ -97,6 +97,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         image: k8s.gcr.io/elasticsearch:v5.6.4
+        imagePullPolicy: IfNotPresent
         name: elasticsearch-logging
         ports:
         - containerPort: 9200
@@ -119,6 +120,7 @@ spec:
         - -w
         - vm.max_map_count=262144
         image: alpine:3.6
+        imagePullPolicy: IfNotPresent
         name: elasticsearch-logging-init
         securityContext:
           privileged: true
@@ -175,6 +177,7 @@ spec:
         - name: XPACK_SECURITY_ENABLED
           value: "false"
         image: docker.elastic.co/kibana/kibana:5.6.4
+        imagePullPolicy: IfNotPresent
         name: kibana-logging
         ports:
         - containerPort: 5601
@@ -387,6 +390,7 @@ spec:
         - name: FLUENTD_ARGS
           value: --no-supervisor -q
         image: k8s.gcr.io/fluentd-elasticsearch:v2.0.4
+        imagePullPolicy: IfNotPresent
         name: fluentd-ds
         resources:
           limits:
@@ -578,6 +582,7 @@ spec:
         - --secure-listen-address=:8443
         - --upstream=http://127.0.0.1:8081/
         image: quay.io/coreos/kube-rbac-proxy:v0.3.0
+        imagePullPolicy: IfNotPresent
         name: kube-rbac-proxy-main
         ports:
         - containerPort: 8443
@@ -593,6 +598,7 @@ spec:
         - --secure-listen-address=:9443
         - --upstream=http://127.0.0.1:8082/
         image: quay.io/coreos/kube-rbac-proxy:v0.3.0
+        imagePullPolicy: IfNotPresent
         name: kube-rbac-proxy-self
         ports:
         - containerPort: 9443
@@ -610,6 +616,7 @@ spec:
         - --telemetry-host=127.0.0.1
         - --telemetry-port=8082
         image: quay.io/coreos/kube-state-metrics:v1.3.0
+        imagePullPolicy: IfNotPresent
         name: kube-state-metrics
       - command:
         - /pod_nanny
@@ -630,6 +637,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         image: k8s.gcr.io/addon-resizer:1.7
+        imagePullPolicy: IfNotPresent
         name: addon-resizer
         resources:
           limits:
@@ -6992,6 +7000,7 @@ spec:
         - --path.procfs=/host/proc
         - --path.sysfs=/host/sys
         image: quay.io/prometheus/node-exporter:v0.15.2
+        imagePullPolicy: IfNotPresent
         name: node-exporter
         resources:
           limits:
@@ -7011,6 +7020,7 @@ spec:
         - --secure-listen-address=:9100
         - --upstream=http://127.0.0.1:9101/
         image: quay.io/coreos/kube-rbac-proxy:v0.3.0
+        imagePullPolicy: IfNotPresent
         name: kube-rbac-proxy
         ports:
         - containerPort: 9100
@@ -10696,6 +10706,7 @@ spec:
         - name: GF_PATHS_CONFIG
           value: /etc/grafana/config/custom.ini
         image: grafana/grafana:6.3.3
+        imagePullPolicy: IfNotPresent
         name: grafana
         ports:
         - containerPort: 3000

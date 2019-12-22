@@ -612,6 +612,7 @@ metadata:
   namespace: knative-serving
 spec:
   image: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+  imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: apps/v1
@@ -656,6 +657,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/activator
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             httpHeaders:
@@ -745,6 +747,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler-hpa
+        imagePullPolicy: IfNotPresent
         name: autoscaler-hpa
         ports:
         - containerPort: 9090
@@ -827,6 +830,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             httpHeaders:
@@ -1574,6 +1578,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/controller
+        imagePullPolicy: IfNotPresent
         name: controller
         ports:
         - containerPort: 9090
@@ -1645,6 +1650,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/networking/istio
+        imagePullPolicy: IfNotPresent
         name: networking-istio
         ports:
         - containerPort: 9090
@@ -1701,6 +1707,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/webhook
+        imagePullPolicy: IfNotPresent
         name: webhook
         ports:
         - containerPort: 9090
