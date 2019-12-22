@@ -656,8 +656,8 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/activator
-        imagePullPolicy: Never
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/activator:v0.9.0
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             httpHeaders:
