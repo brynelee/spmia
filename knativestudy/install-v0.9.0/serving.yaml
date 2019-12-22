@@ -611,7 +611,7 @@ metadata:
   name: queue-proxy
   namespace: knative-serving
 spec:
-  image: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+  image: gcr.io/knative-releases/knative.dev/serving/cmd/queue:v0.9.0
   imagePullPolicy: Never
 
 ---
@@ -657,7 +657,7 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/serving
         image: gcr.io/knative-releases/knative.dev/serving/cmd/activator:v0.9.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Never
         livenessProbe:
           httpGet:
             httpHeaders:
@@ -746,7 +746,7 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler-hpa
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler-hpa:v0.9.0
         imagePullPolicy: Never
         name: autoscaler-hpa
         ports:
@@ -829,7 +829,7 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler:v0.9.0
         imagePullPolicy: Never
         livenessProbe:
           httpGet:
@@ -1577,7 +1577,7 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/controller
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/controller:v0.9.0
         imagePullPolicy: Never
         name: controller
         ports:
@@ -1649,7 +1649,7 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/networking/istio
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/networking/istio:v0.9.0
         imagePullPolicy: Never
         name: networking-istio
         ports:
@@ -1706,7 +1706,7 @@ spec:
           value: config-observability
         - name: METRICS_DOMAIN
           value: knative.dev/serving
-        image: gcr.io/knative-releases/knative.dev/serving/cmd/webhook
+        image: gcr.io/knative-releases/knative.dev/serving/cmd/webhook:v0.9.0
         imagePullPolicy: Never
         name: webhook
         ports:

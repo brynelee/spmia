@@ -1835,15 +1835,15 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/eventing
         - name: BROKER_INGRESS_IMAGE
-          value: gcr.io/knative-releases/knative.dev/eventing/cmd/broker/ingress
+          value: gcr.io/knative-releases/knative.dev/eventing/cmd/broker/ingress:v0.9.0
         - name: BROKER_INGRESS_SERVICE_ACCOUNT
           value: eventing-broker-ingress
         - name: BROKER_FILTER_IMAGE
-          value: gcr.io/knative-releases/knative.dev/eventing/cmd/broker/filter
+          value: gcr.io/knative-releases/knative.dev/eventing/cmd/broker/filter:v0.9.0
         - name: BROKER_FILTER_SERVICE_ACCOUNT
           value: eventing-broker-filter
-        image: gcr.io/knative-releases/knative.dev/eventing/cmd/controller
-        imagePullPolicy: IfNotPresent
+        image: gcr.io/knative-releases/knative.dev/eventing/cmd/controller:v0.9.0
+        imagePullPolicy: Never
         name: eventing-controller
         ports:
         - containerPort: 9090
@@ -1892,11 +1892,11 @@ spec:
         - name: METRICS_DOMAIN
           value: knative.dev/sources
         - name: CRONJOB_RA_IMAGE
-          value: gcr.io/knative-releases/knative.dev/eventing/cmd/cronjob_receive_adapter
+          value: gcr.io/knative-releases/knative.dev/eventing/cmd/cronjob_receive_adapter:v0.9.0
         - name: APISERVER_RA_IMAGE
-          value: gcr.io/knative-releases/knative.dev/eventing/cmd/apiserver_receive_adapter
-        image: gcr.io/knative-releases/knative.dev/eventing/cmd/sources_controller
-        imagePullPolicy: IfNotPresent
+          value: gcr.io/knative-releases/knative.dev/eventing/cmd/apiserver_receive_adapter:v0.9.0
+        image: gcr.io/knative-releases/knative.dev/eventing/cmd/sources_controller:v0.9.0
+        imagePullPolicy: Never
         name: controller
         ports:
         - containerPort: 9090
@@ -1950,8 +1950,8 @@ spec:
           value: eventing-webhook
         - name: REG_DELAY_TIME
           value: "10"
-        image: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook
-        imagePullPolicy: IfNotPresent
+        image: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook:v0.9.0
+        imagePullPolicy: Never
         name: eventing-webhook
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
@@ -2408,8 +2408,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_controller
-        imagePullPolicy: IfNotPresent
+        image: gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_controller:v0.9.0
+        imagePullPolicy: Never
         name: controller
         ports:
         - containerPort: 9090
@@ -2455,8 +2455,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_dispatcher
-        imagePullPolicy: IfNotPresent
+        image: gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_dispatcher:v0.9.0
+        imagePullPolicy: Never
         name: dispatcher
         ports:
         - containerPort: 9090
