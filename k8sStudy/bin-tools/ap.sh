@@ -1,2 +1,2 @@
-kubectl get pods -o wide --all-namespaces
+kubectl get pods -o wide --all-namespaces $*
 

@@ -1,2 +1,2 @@
-kubectl get svc -o wide --all-namespaces
+kubectl get svc -o wide --all-namespaces $*
 

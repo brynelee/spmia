@@ -1,2 +1,2 @@
-kubectl get deploy -o wide --all-namespaces
+kubectl get deploy -o wide --all-namespaces $*
 

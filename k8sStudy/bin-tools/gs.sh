@@ -1,2 +1,2 @@
-kubectl get svc -o wide
+kubectl get svc -o wide $*
 
