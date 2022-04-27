@@ -8,17 +8,22 @@ metadata:
   labels:
     app: httpbin
 spec:
+  type: NodePort
   ports:
   - name: http
     port: 8000
+    targetPort: 8000
   selector:
     app: httpbin
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: httpbin
 spec:
+  selector:
+    matchLabels:
+      app: httpbin
   replicas: 1
   template:
     metadata:
